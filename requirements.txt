@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+gunicorn
+redis
+pydantic
+piper-tts

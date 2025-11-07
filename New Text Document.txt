@@ -1,0 +1,26 @@
+Free Options
+1. Random Word API
+
+Simple and straightforward: https://random-word-api.herokuapp.com/word
+Can specify number of words: https://random-word-api.herokuapp.com/word?number=5
+No authentication needed
+
+2. WordsAPI (RapidAPI)
+
+Endpoint: https://wordsapi.p.rapidapi.com/words/?random=true
+Includes definitions, synonyms, examples
+Free tier: 2,500 requests/day
+Requires API key (via RapidAPI)
+
+3. Datamuse API
+
+Not strictly "random" but you can get words matching patterns
+https://api.datamuse.com/words?sp=*&max=1000 then pick randomly
+No authentication needed
+Great for word games
+
+4. Free Dictionary API
+
+https://api.dictionaryapi.dev/api/v2/entries/en/<word>
+Doesn't have a random endpoint, but you can maintain a word list and use it for lookups
+Includes definitions, pronunciations, examples
