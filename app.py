@@ -1,7 +1,9 @@
+import os
 import uuid
 import redis
 import pickle
 import fastapi
+from dotenv import load_dotenv
 from pydantic import BaseModel
 from utils.game import SpellingBeeGame
 from fastapi.responses import JSONResponse
@@ -12,9 +14,15 @@ from fastapi.middleware.cors import CORSMiddleware
 ## Gemini told me about it when I should it my first iteration to solve the "singleton" problem in FastAPI apps
 ## I got an idea of using Redis and I am pretty excited to try it out
 
+load_dotenv() 
 app = fastapi.FastAPI()
 try:
-    r = redis.Redis(host="localhost", port=6379, db=0, decode_responses=False)
+    redis_url = os.environ.get("REDIS_URL")
+    if not redis_url:
+        raise ValueError("REDIS_URL environment variable is not set.")
+
+    r = redis.from_url(redis_url, decode_responses=False)
+    r.ping() 
 except Exception as e:
     raise RuntimeError(f"Failed to connect to Redis: {e}")
 
