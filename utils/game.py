@@ -10,7 +10,7 @@ class SpellingBeeGame:
     current_target_word_index: int
     target_word: str
 
-    def __init__(self) -> None:
+    def __init__(self):
         self.target_words = randomwords.get_random_words()
 
         self.definitions = {}
