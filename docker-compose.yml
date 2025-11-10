@@ -1,15 +1,17 @@
+## Made with claude
+## I changed the ports abit
 version: '3.8'
 
 services:
   app:
     build: .
     ports:
-      - "8080:8080"
+      - "8000:80"
     depends_on:
       - redis
     environment:
       - REDIS_URL=redis://redis:6379/0 
-    command: gunicorn -w 4 -k uvicorn.workers.UvicornWorker app:app --bind 0.0.0.0:8080
+    command: gunicorn -w 4 -k uvicorn.workers.UvicornWorker app:app 
 
   redis:
     image: redis:latest
