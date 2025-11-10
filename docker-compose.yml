@@ -7,7 +7,6 @@ services:
       - "8080:8080"
     depends_on:
       - redis
-    # CRITICAL CHANGE: Pass the Redis service name in the URL
     environment:
       - REDIS_URL=redis://redis:6379/0 
     command: gunicorn -w 4 -k uvicorn.workers.UvicornWorker app:app --bind 0.0.0.0:8080
