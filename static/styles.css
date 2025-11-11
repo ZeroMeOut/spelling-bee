@@ -6,7 +6,8 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    /* Changed background to a soft, warm yellow gradient */
+    background: linear-gradient(135deg, #FFC300 0%, #FFB200 100%);
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -25,7 +26,8 @@ body {
 
 h1 {
     text-align: center;
-    color: #667eea;
+    /* Changed heading color to black for contrast */
+    color: #1D1D1D; 
     margin-bottom: 30px;
     font-size: 2.5em;
 }
@@ -35,7 +37,8 @@ h1 {
     justify-content: space-around;
     margin-bottom: 30px;
     padding: 20px;
-    background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+    /* Changed stat box background to a yellow tint */
+    background: linear-gradient(135deg, #FFC30015 0%, #FFB20015 100%);
     border-radius: 10px;
 }
 
@@ -52,7 +55,8 @@ h1 {
 .stat-value {
     font-size: 2em;
     font-weight: bold;
-    color: #667eea;
+    /* Changed stat value color to yellow */
+    color: #FFC300;
 }
 
 .lives {
@@ -77,13 +81,15 @@ button {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    /* Changed primary button to black/yellow gradient */
+    background: linear-gradient(135deg, #1D1D1D 0%, #333333 100%);
+    color: #FFC300; /* Yellow text */
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    /* Adjusted shadow to match the new dark color */
+    box-shadow: 0 5px 15px rgba(29, 29, 29, 0.4); 
 }
 
 .btn-secondary {
@@ -93,6 +99,7 @@ button {
 
 .btn-secondary:hover {
     background: #e0e0e0;
+    transform: translateY(-2px);
 }
 
 .btn-primary:disabled, .btn-secondary:disabled {
@@ -130,14 +137,16 @@ input[type="text"] {
 
 input[type="text"]:focus {
     outline: none;
-    border-color: #667eea;
+    /* Changed input focus border to black */
+    border-color: #1D1D1D; 
 }
 
 .submit-btn {
     width: 100%;
     padding: 15px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    /* Changed submit button to black/yellow gradient */
+    background: linear-gradient(135deg, #FFC300 0%, #FFA500 100%); 
+    color: #1D1D1D; /* Dark text for contrast */
     border: none;
     border-radius: 10px;
     font-size: 1.2em;
@@ -148,7 +157,8 @@ input[type="text"]:focus {
 
 .submit-btn:hover:not(:disabled) {
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    /* Adjusted shadow to match the new yellow color */
+    box-shadow: 0 5px 15px rgba(255, 195, 0, 0.4); 
 }
 
 .submit-btn:disabled {
@@ -196,7 +206,8 @@ input[type="text"]:focus {
 }
 
 .start-screen h2, .game-over-screen h2 {
-    color: #667eea;
+    /* Changed h2 color to black */
+    color: #1D1D1D; 
     margin-bottom: 20px;
 }
 
@@ -207,12 +218,13 @@ input[type="text"]:focus {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 .loading {
     text-align: center;
-    color: #667eea;
+    /* Changed loading color to black */
+    color: #1D1D1D;
     font-size: 1.2em;
 }
 
@@ -228,6 +240,24 @@ input[type="text"]:focus {
     font-size: 1.2em;
 }
 
+.game-over-stats strong {
+    /* Changed strong text color to yellow */
+    color: #FFC300;
+    font-size: 1.3em;
+}
+
+.game-over-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.game-over-buttons button {
+    flex: 1;
+    min-width: 140px;
+}
+
 .footer {
     text-align: center;
     margin-top: 30px;
@@ -236,12 +266,173 @@ input[type="text"]:focus {
 }
 
 .footer a {
-    color: #667eea;
+    /* Changed footer link color to black */
+    color: #1D1D1D;
     text-decoration: none;
     font-weight: 600;
     transition: color 0.3s;
 }
 
 .footer a:hover {
-    color: #764ba2;
+    /* Changed footer link hover color to dark yellow */
+    color: #FFA500;
+}
+
+/* Feedback Button */
+.feedback-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 12px 20px;
+    /* Changed feedback button gradient */
+    background: linear-gradient(135deg, #FFC300 0%, #FFA500 100%);
+    color: #1D1D1D; /* Dark text */
+    border: none;
+    border-radius: 25px;
+    font-size: 0.95em;
+    cursor: pointer;
+    /* Adjusted shadow to match yellow */
+    box-shadow: 0 4px 15px rgba(255, 195, 0, 0.3);
+    transition: all 0.3s;
+    z-index: 1000;
+}
+
+.feedback-btn:hover {
+    transform: translateY(-2px);
+    /* Adjusted shadow to match yellow */
+    box-shadow: 0 6px 20px rgba(255, 195, 0, 0.4);
+}
+
+/* Feedback Popup (No major color changes needed here, mostly background/shadow) */
+.feedback-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.feedback-content {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    animation: slideDown 0.3s;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    font-size: 1.5em;
+    color: #999;
+    cursor: pointer;
+    padding: 5px 10px;
+    transition: color 0.3s;
+}
+
+.close-btn:hover {
+    color: #333;
+}
+
+.feedback-content h3 {
+    /* Changed feedback heading color to black */
+    color: #1D1D1D;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+
+#feedbackForm input,
+#feedbackForm textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1em;
+    font-family: inherit;
+    transition: border-color 0.3s;
+}
+
+#feedbackForm input:focus,
+#feedbackForm textarea:focus {
+    outline: none;
+    /* Changed focus border to black */
+    border-color: #1D1D1D;
+}
+
+#feedbackForm textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.feedback-status {
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 15px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.feedback-status.success {
+    background: #d4edda;
+    color: #155724;
+}
+
+.feedback-status.error {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.feedback-status.info {
+    background: #d1ecf1;
+    color: #0c5460;
+}
+
+@media (max-width: 600px) {
+    .feedback-btn {
+        top: 10px;
+        right: 10px;
+        padding: 10px 16px;
+        font-size: 0.85em;
+    }
+    
+    .feedback-content {
+        padding: 25px;
+    }
+}
+
+.hidden {
+    display: none !important;
 }
