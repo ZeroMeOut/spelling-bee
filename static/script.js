@@ -2,6 +2,34 @@ let userId = null;
 let currentAudio = null;
 const API_BASE = window.location.origin;
 
+// Audio feedback files
+const AUDIO_FILES = {
+    correct: '/audio/correct_audio.wav',
+    incorrect1: '/audio/incorrect_audio_1.wav',
+    incorrect2: '/audio/incorrect_audio_2.wav',
+    incorrect3: '/audio/incorrect_audio_3.wav',
+    lose: '/audio/you_lose_audio.wav'
+};
+
+function playFeedbackAudio(type) {
+    let audioPath;
+    
+    if (type === 'correct') {
+        audioPath = AUDIO_FILES.correct;
+    } else if (type === 'lose') {
+        audioPath = AUDIO_FILES.lose;
+    } else if (type === 'incorrect') {
+        // Randomly pick one of the incorrect sounds
+        const randomIncorrect = Math.floor(Math.random() * 3) + 1;
+        audioPath = AUDIO_FILES[`incorrect${randomIncorrect}`];
+    }
+    
+    if (audioPath) {
+        const audio = new Audio(audioPath);
+        audio.play().catch(err => console.log('Audio play failed:', err));
+    }
+}
+
 async function startGame() {
     showLoading();
     try {
@@ -80,19 +108,23 @@ async function submitGuess() {
         updateGameStats(data.score, data.lifes);
         
         if (data.correct) {
+            playFeedbackAudio('correct');
             showMessage('Correct! 🎉', 'success');
             document.getElementById('guessInput').value = '';
             document.getElementById('definitionBox').classList.add('hidden');
             
             if (data.end_game) {
-                setTimeout(() => showGameOver(data.score, true), 1500);
+                setTimeout(() => showGameOver(data.score, true, null), 1500);
             } else {
                 setTimeout(() => playAudio(), 1500);
             }
         } else {
+            playFeedbackAudio('incorrect');
+            
             if (data.end_game) {
+                playFeedbackAudio('lose');
                 showMessage(`Wrong! The word was "${data.target_word}". Game Over!`, 'error');
-                setTimeout(() => showGameOver(data.score, false), 2000);
+                setTimeout(() => showGameOver(data.score, false, data.target_word), 2000);
             } else {
                 showMessage('Wrong! Try again.', 'error');
                 document.getElementById('guessInput').value = '';
@@ -125,15 +157,21 @@ function showLoading() {
     document.getElementById('loadingScreen').classList.remove('hidden');
 }
 
-function showGameOver(score, wonGame) {
+function showGameOver(score, wonGame, correctWord) {
     document.getElementById('gameScreen').classList.add('hidden');
     document.getElementById('gameOverScreen').classList.remove('hidden');
     document.getElementById('finalScore').textContent = score;
     
-    const message = wonGame 
-        ? 'Congratulations! You completed all words! 🏆' 
-        : 'Better luck next time!';
-    document.getElementById('gameOverMessage').textContent = message;
+    const messageEl = document.getElementById('gameOverMessage');
+    if (wonGame) {
+        messageEl.innerHTML = 'Congratulations! You completed all words! 🏆';
+    } else {
+        messageEl.innerHTML = `Better luck next time!<br><br>The correct word was: <strong>"${correctWord}"</strong>`;
+    }
+}
+
+function goHome() {
+    location.reload();
 }
 
 async function resetGame() {
@@ -164,3 +202,57 @@ function handleKeyPress(event) {
         submitGuess();
     }
 }
+
+// --- Feedback Form Functions ---
+
+function openFeedbackPopup() {
+    document.getElementById('feedbackPopup').classList.remove('hidden');
+}
+
+function closeFeedbackPopup() {
+    document.getElementById('feedbackPopup').classList.add('hidden');
+    // Clear status message on close
+    const statusDiv = document.getElementById('feedbackStatus');
+    statusDiv.classList.add('hidden');
+    statusDiv.className = 'feedback-status hidden';
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const feedbackForm = document.getElementById('feedbackForm');
+    const statusDiv = document.getElementById('feedbackStatus');
+    
+    feedbackForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        // Show submitting status
+        statusDiv.textContent = 'Sending...';
+        statusDiv.className = 'feedback-status info';
+        statusDiv.classList.remove('hidden');
+
+        const form = e.target;
+        const formData = new FormData(form);
+        
+        try {
+            const response = await fetch(form.action, {
+                method: form.method,
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (response.ok) {
+                statusDiv.textContent = 'Thank you for your feedback! It has been sent.';
+                statusDiv.className = 'feedback-status success';
+                form.reset(); // Clear the form fields
+                setTimeout(closeFeedbackPopup, 3000); // Close after a delay
+            } else {
+                statusDiv.textContent = 'Oops! There was an issue sending your feedback.';
+                statusDiv.className = 'feedback-status error';
+            }
+        } catch (error) {
+            statusDiv.textContent = 'Network error. Please try again.';
+            statusDiv.className = 'feedback-status error';
+        }
+    });
+});
