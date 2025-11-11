@@ -1,4 +1,4 @@
-<!-- This html is entirely Claude generated -->
+<!-- Frontend is LLM generated code for a spelling bee game web application. -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,24 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <title>Spelling Bee Game</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐝</text></svg>">
 </head>
 <body>
     <div class="container">
         <h1>🐝 Spelling Bee</h1>
 
-        <!-- Start Screen -->
         <div id="startScreen" class="start-screen">
             <h2>Welcome to Spelling Bee!</h2>
             <p>Listen to the word pronunciation, read the definition, and spell it correctly. You have 3 lives. Good luck!</p>
             <button class="btn-primary" onclick="startGame()">Start Game</button>
         </div>
 
-        <!-- Loading Screen -->
         <div id="loadingScreen" class="loading hidden">
             <p>Loading game...</p>
         </div>
 
-        <!-- Game Screen -->
         <div id="gameScreen" class="hidden">
             <div class="game-stats">
                 <div class="stat">
@@ -54,21 +52,38 @@
             <div id="message" class="hidden"></div>
         </div>
 
-        <!-- Game Over Screen -->
         <div id="gameOverScreen" class="game-over-screen hidden">
             <h2>Game Over!</h2>
             <div class="game-over-stats">
                 <p>Final Score: <strong id="finalScore">0</strong></p>
                 <p id="gameOverMessage"></p>
             </div>
-            <button class="btn-primary" onclick="resetGame()">Play Again</button>
+            <div class="game-over-buttons">
+                <button class="btn-primary" onclick="resetGame()">🔄 Play Again</button>
+                <button class="btn-secondary" onclick="goHome()">🏠 Home</button>
+            </div>
         </div>
 
-        <!-- Footer -->
         <div class="footer">
             <p>Hey, check out my <a href="https://github.com/ZeroMeOut" target="_blank">GitHub :)</a></p>
         </div>
     </div>
+    
+    <button class="feedback-btn" onclick="openFeedbackPopup()">Feedback</button>
+
+    <div id="feedbackPopup" class="feedback-popup hidden">
+        <div class="feedback-content">
+            <button class="close-btn" onclick="closeFeedbackPopup()">×</button>
+            <h3>Send Feedback</h3>
+            <form id="feedbackForm" action="https://formspree.io/f/xqawkypv" method="POST">
+                <input type="email" name="email" placeholder="Your Email (Optional)">
+                <textarea name="message" placeholder="Tell us what you think..." required></textarea>
+                <button class="submit-btn" type="submit">Send Feedback</button>
+                <div id="feedbackStatus" class="feedback-status hidden"></div>
+            </form>
+        </div>
+    </div>
+    
     <script src="script.js"></script>
 </body>
 </html>
