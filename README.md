@@ -84,7 +84,7 @@ For the TTS model it's alright as well for a very light weight model. Honestly I
 
 The backend done by me, frontend entirely vibecoded by Claude (I will complete the Odin Project someday trust).
 
-Honestly learned a lot doing this, it was fun. I would make improvements here and there before moving to another project, and the site would keep running until it cooks my budget. Until the next :)
+Honestly learned a lot doing this, it was fun. I will make improvements here and there before moving to another project, and the site would keep running until it cooks my budget. Until the next :)
 ## Acknowledgements
 
  - [This wonderful channel](https://www.youtube.com/@pixegami)
