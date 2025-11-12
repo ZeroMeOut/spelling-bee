@@ -82,7 +82,7 @@ This project took me like a week to finish, could be less if I remove the days I
 
 For the TTS model it's alright as well for a very light weight model. Honestly I just browsed through [r/LocalLLaMA](https://www.reddit.com/r/LocalLLaMA/) and picked the one that gave me less fraustation to setup. My friends are annoyed with it tho XD, so I am planning to using a more powerful TTS model and just store the audios in an S3 bucket or something.
 
-The backend done by me, frontend entirely vibecoded by Claude (I will complete the Odin Project someday trust)
+The backend done by me, frontend entirely vibecoded by Claude (I will complete the Odin Project someday trust).
 
 Honestly learned a lot doing this, it was fun. I would make improvements here and there before moving to another project, and the site would keep running until it cooks my budget. Until the next :)
 ## Acknowledgements
