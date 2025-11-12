@@ -75,8 +75,8 @@ sudo systemctl restart nginx
 echo "Done"
 ```
 
-Then just save it by pressing Esc to :wq and run by `bash setup.sh`.
-I noticed that when the `docker-compose up --build -d --remove-orphans` runs the setup fails, but just just exit the instance and ssh into again, then run the shell file again. Idk why exactly it works but it does. [Here](https://stackoverflow.com/questions/64662372/docker-compose-up-error-while-fetching-server-api-version-connection-aborte) is where I found the solution :)
+Then save it by pressing Esc into :wq and run `bash setup.sh`.
+I noticed that when the `docker-compose up --build -d --remove-orphans` runs the setup fails, but just exit the instance and ssh into again, then run the shell file again. Idk why exactly it works but it does. [Here](https://stackoverflow.com/questions/64662372/docker-compose-up-error-while-fetching-server-api-version-connection-aborte) is where I found the solution :)
 ## Random Rambling
 This project took me like a week to finish, could be less if I remove the days I was procrastinating lmao. At first I was using apis for the definitions and words but I then thought "Hmm I think I could make it all local", so I did with nltk's wordnet and brown. The set is umm alright and it did introduce me to LRU (Least-Recently-Used) cache which I didn't know existed. I should really read on that, I should read on a lot of things.
 
