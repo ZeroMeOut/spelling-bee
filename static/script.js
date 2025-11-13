@@ -82,8 +82,38 @@ async function showDefinition() {
         
         document.getElementById('definition').textContent = data.definition;
         document.getElementById('definitionBox').classList.remove('hidden');
+        
+        // Show/hide cycle button based on definition count
+        const cycleBtn = document.getElementById('cycleDefBtn');
+        if (data.count > 1) {
+            cycleBtn.classList.remove('hidden');
+        } else {
+            cycleBtn.classList.add('hidden');
+        }
     } catch (error) {
         showMessage('Failed to load definition.', 'error');
+    }
+}
+
+async function cycleDefinition() {
+    if (!userId) return;
+    
+    try {
+        const response = await fetch(`${API_BASE}/cycle-definition?user_id=${userId}`);
+        const data = await response.json();
+        
+        document.getElementById('definition').textContent = data.definition;
+        document.getElementById('definitionBox').classList.remove('hidden');
+        
+        // Keep button visible if multiple definitions exist
+        const cycleBtn = document.getElementById('cycleDefBtn');
+        if (data.count > 1) {
+            cycleBtn.classList.remove('hidden');
+        } else {
+            cycleBtn.classList.add('hidden');
+        }
+    } catch (error) {
+        showMessage('Failed to cycle definition.', 'error');
     }
 }
 

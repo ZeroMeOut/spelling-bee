@@ -75,7 +75,28 @@ def get_definition(user_id: str):
     game = get_game(user_id)
     if not game:
         return JSONResponse(status_code=404, content={"error": "Game not found or expired"})
-    return {"definition": game.get_current_word_definition()}
+    definition_text = game.get_current_word_definition()
+    definition_count = game.get_definition_count()
+    return {
+        "definition": definition_text,
+        "count": definition_count
+    }
+
+@app.get("/cycle-definition")
+def cycle_definition(user_id: str):
+    game = get_game(user_id)
+    if not game:
+        return JSONResponse(status_code=404, content={"error": "Game not found or expired"})
+    try:
+        new_definition = game.cycle_definition()
+        definition_count = game.get_definition_count()
+        save_game(user_id, game)
+        return {
+            "definition": new_definition,
+            "count": definition_count
+        }
+    except Exception as e:
+        return JSONResponse(status_code=500, content={"error": f"Failed to cycle definition: {str(e)}"})
 
 @app.get("/audio")
 def get_audio(user_id: str):
