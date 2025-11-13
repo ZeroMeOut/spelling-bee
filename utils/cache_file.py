@@ -48,7 +48,7 @@ def create_wordnet_caches():
         
         synsets = wn.synsets(word)
         if synsets:
-            definitions[word] = synsets[0].definition() ## And here
+            definitions[word] = [synset.definition() for synset in synsets[:3]] ## And here
     
     print(f"Found definitions for {len(definitions)} words")
     
