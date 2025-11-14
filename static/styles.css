@@ -6,7 +6,6 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    /* Changed background to a soft, warm yellow gradient */
     background: linear-gradient(135deg, #FFC300 0%, #FFB200 100%);
     min-height: 100vh;
     display: flex;
@@ -26,7 +25,6 @@ body {
 
 h1 {
     text-align: center;
-    /* Changed heading color to black for contrast */
     color: #1D1D1D; 
     margin-bottom: 30px;
     font-size: 2.5em;
@@ -37,7 +35,6 @@ h1 {
     justify-content: space-around;
     margin-bottom: 30px;
     padding: 20px;
-    /* Changed stat box background to a yellow tint */
     background: linear-gradient(135deg, #FFC30015 0%, #FFB20015 100%);
     border-radius: 10px;
 }
@@ -55,7 +52,6 @@ h1 {
 .stat-value {
     font-size: 2em;
     font-weight: bold;
-    /* Changed stat value color to yellow */
     color: #FFC300;
 }
 
@@ -68,6 +64,7 @@ h1 {
     gap: 15px;
     margin-bottom: 30px;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 button {
@@ -81,14 +78,12 @@ button {
 }
 
 .btn-primary {
-    /* Changed primary button to black/yellow gradient */
     background: linear-gradient(135deg, #1D1D1D 0%, #333333 100%);
-    color: #FFC300; /* Yellow text */
+    color: #FFC300;
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    /* Adjusted shadow to match the new dark color */
     box-shadow: 0 5px 15px rgba(29, 29, 29, 0.4); 
 }
 
@@ -137,16 +132,14 @@ input[type="text"] {
 
 input[type="text"]:focus {
     outline: none;
-    /* Changed input focus border to black */
     border-color: #1D1D1D; 
 }
 
 .submit-btn {
     width: 100%;
     padding: 15px;
-    /* Changed submit button to black/yellow gradient */
     background: linear-gradient(135deg, #FFC300 0%, #FFA500 100%); 
-    color: #1D1D1D; /* Dark text for contrast */
+    color: #1D1D1D;
     border: none;
     border-radius: 10px;
     font-size: 1.2em;
@@ -157,7 +150,6 @@ input[type="text"]:focus {
 
 .submit-btn:hover:not(:disabled) {
     transform: translateY(-2px);
-    /* Adjusted shadow to match the new yellow color */
     box-shadow: 0 5px 15px rgba(255, 195, 0, 0.4); 
 }
 
@@ -206,7 +198,6 @@ input[type="text"]:focus {
 }
 
 .start-screen h2, .game-over-screen h2 {
-    /* Changed h2 color to black */
     color: #1D1D1D; 
     margin-bottom: 20px;
 }
@@ -223,7 +214,6 @@ input[type="text"]:focus {
 
 .loading {
     text-align: center;
-    /* Changed loading color to black */
     color: #1D1D1D;
     font-size: 1.2em;
 }
@@ -241,7 +231,6 @@ input[type="text"]:focus {
 }
 
 .game-over-stats strong {
-    /* Changed strong text color to yellow */
     color: #FFC300;
     font-size: 1.3em;
 }
@@ -266,7 +255,6 @@ input[type="text"]:focus {
 }
 
 .footer a {
-    /* Changed footer link color to black */
     color: #1D1D1D;
     text-decoration: none;
     font-weight: 600;
@@ -274,24 +262,20 @@ input[type="text"]:focus {
 }
 
 .footer a:hover {
-    /* Changed footer link hover color to dark yellow */
     color: #FFA500;
 }
 
-/* Feedback Button */
 .feedback-btn {
     position: fixed;
     top: 20px;
     right: 20px;
     padding: 12px 20px;
-    /* Changed feedback button gradient */
     background: linear-gradient(135deg, #FFC300 0%, #FFA500 100%);
-    color: #1D1D1D; /* Dark text */
+    color: #1D1D1D;
     border: none;
     border-radius: 25px;
     font-size: 0.95em;
     cursor: pointer;
-    /* Adjusted shadow to match yellow */
     box-shadow: 0 4px 15px rgba(255, 195, 0, 0.3);
     transition: all 0.3s;
     z-index: 1000;
@@ -299,11 +283,9 @@ input[type="text"]:focus {
 
 .feedback-btn:hover {
     transform: translateY(-2px);
-    /* Adjusted shadow to match yellow */
     box-shadow: 0 6px 20px rgba(255, 195, 0, 0.4);
 }
 
-/* Feedback Popup (No major color changes needed here, mostly background/shadow) */
 .feedback-popup {
     position: fixed;
     top: 0;
@@ -316,6 +298,7 @@ input[type="text"]:focus {
     align-items: center;
     z-index: 2000;
     animation: fadeIn 0.3s;
+    padding: 20px;
 }
 
 @keyframes fadeIn {
@@ -332,10 +315,12 @@ input[type="text"]:focus {
     border-radius: 15px;
     padding: 30px;
     max-width: 500px;
-    width: 90%;
+    width: 100%;
     position: relative;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
     animation: slideDown 0.3s;
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 @keyframes slideDown {
@@ -367,7 +352,6 @@ input[type="text"]:focus {
 }
 
 .feedback-content h3 {
-    /* Changed feedback heading color to black */
     color: #1D1D1D;
     margin-bottom: 20px;
     font-size: 1.5em;
@@ -388,7 +372,6 @@ input[type="text"]:focus {
 #feedbackForm input:focus,
 #feedbackForm textarea:focus {
     outline: none;
-    /* Changed focus border to black */
     border-color: #1D1D1D;
 }
 
@@ -420,19 +403,235 @@ input[type="text"]:focus {
     color: #0c5460;
 }
 
-@media (max-width: 600px) {
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 25px 20px;
+        border-radius: 15px;
+    }
+
+    h1 {
+        font-size: 2em;
+        margin-bottom: 20px;
+    }
+
+    .game-stats {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+
+    .stat-value {
+        font-size: 1.5em;
+    }
+
+    .lives {
+        font-size: 1.5em;
+    }
+
+    .controls {
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    button {
+        padding: 12px 20px;
+        font-size: 0.95em;
+    }
+
+    .controls button {
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+
+    .definition-box {
+        padding: 15px;
+        min-height: 60px;
+        font-size: 0.95em;
+    }
+
+    input[type="text"] {
+        padding: 12px;
+        font-size: 1.1em;
+    }
+
+    .submit-btn {
+        padding: 12px;
+        font-size: 1.1em;
+    }
+
+    .message {
+        padding: 12px;
+        font-size: 0.95em;
+    }
+
+    .game-over-stats {
+        padding: 15px;
+    }
+
+    .game-over-stats p {
+        font-size: 1.1em;
+    }
+
+    .game-over-stats strong {
+        font-size: 1.2em;
+    }
+
+    .game-over-buttons button {
+        flex: 1 1 100%;
+        min-width: 100%;
+    }
+
+    .footer {
+        margin-top: 20px;
+        padding-top: 15px;
+        font-size: 0.9em;
+    }
+
     .feedback-btn {
         top: 10px;
         right: 10px;
         padding: 10px 16px;
         font-size: 0.85em;
     }
-    
+
     .feedback-content {
-        padding: 25px;
+        padding: 25px 20px;
+        margin: 10px;
+    }
+
+    .feedback-content h3 {
+        font-size: 1.3em;
+    }
+
+    #feedbackForm input,
+    #feedbackForm textarea {
+        padding: 10px;
+        font-size: 0.95em;
+    }
+
+    #feedbackForm textarea {
+        min-height: 100px;
     }
 }
 
-.hidden {
-    display: none !important;
+@media (max-width: 480px) {
+    .container {
+        padding: 20px 15px;
+    }
+
+    h1 {
+        font-size: 1.75em;
+    }
+
+    .stat-label {
+        font-size: 0.85em;
+    }
+
+    .stat-value {
+        font-size: 1.3em;
+    }
+
+    .lives {
+        font-size: 1.3em;
+    }
+
+    button {
+        padding: 10px 16px;
+        font-size: 0.9em;
+    }
+
+    .controls {
+        gap: 8px;
+    }
+
+    .definition-box {
+        padding: 12px;
+        font-size: 0.9em;
+    }
+
+    input[type="text"] {
+        font-size: 1em;
+    }
+
+    .submit-btn {
+        font-size: 1em;
+    }
+
+    .start-screen h2, .game-over-screen h2 {
+        font-size: 1.4em;
+    }
+
+    .start-screen p, .game-over-screen p {
+        font-size: 0.95em;
+    }
+
+    .game-over-stats p {
+        font-size: 1em;
+    }
+
+    .feedback-btn {
+        padding: 8px 14px;
+        font-size: 0.8em;
+        border-radius: 20px;
+    }
+}
+
+/* Landscape mode for mobile devices */
+@media (max-height: 600px) and (orientation: landscape) {
+    body {
+        padding: 10px;
+        align-items: flex-start;
+    }
+
+    .container {
+        margin: 10px 0;
+    }
+
+    h1 {
+        margin-bottom: 15px;
+        font-size: 1.5em;
+    }
+
+    .game-stats {
+        padding: 10px;
+        margin-bottom: 15px;
+    }
+
+    .controls {
+        margin-bottom: 15px;
+    }
+
+    button {
+        padding: 8px 16px;
+    }
+
+    .definition-box {
+        padding: 10px;
+        min-height: 50px;
+    }
+
+    .footer {
+        margin-top: 15px;
+        padding-top: 10px;
+    }
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+    button {
+        min-height: 44px;
+    }
+
+    input[type="text"] {
+        min-height: 44px;
+    }
+
+    .close-btn {
+        min-width: 44px;
+        min-height: 44px;
+    }
 }
