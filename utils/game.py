@@ -1,5 +1,5 @@
-from typing import List, Dict, Optional, Any
-from utils import TTS, randomwords, definition
+from typing import List, Dict, Any
+from utils import TTS, randomwords, definition, S3toBytes
 
 ## Idk if this is optimal but this will do for now
 class SpellingBeeGame:
@@ -72,7 +72,7 @@ class SpellingBeeGame:
         return len(defs_list)
 
     def get_audio_bytes_of_current_word(self) -> bytes:
-        return TTS.synthesize_text_to_wav_bytes(self.target_word)
+        return S3toBytes.get_presigned_audio_bytes(self.target_word)
 
     def one_game_session(self, word: str) -> Dict[str, Any]:
         if word.lower() == self.target_word.lower():
