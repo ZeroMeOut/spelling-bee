@@ -69,7 +69,8 @@ def start_game():
     except Exception as e:
         return JSONResponse(status_code=500, content={"error": f"Failed to start game: {str(e)}"})
 
-
+ ##I think loading and unloading may be an unoptimized approach
+ ##Someone smarter than me can figure out a better way later
 @app.get("/definition")
 def get_definition(user_id: str):
     game = get_game(user_id)
