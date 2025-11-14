@@ -5,3 +5,4 @@ redis
 pydantic
 piper-tts
 python-dotenv
+boto3
