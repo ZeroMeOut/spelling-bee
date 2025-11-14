@@ -1,5 +1,6 @@
 let userId = null;
 let currentAudio = null;
+let playbackSpeed = 1.0; // Default speed
 const API_BASE = window.location.origin;
 
 // Audio feedback files
@@ -10,6 +11,25 @@ const AUDIO_FILES = {
     incorrect3: '/audio/incorrect_audio_3.wav',
     lose: '/audio/you_lose_audio.wav'
 };
+
+function toggleSpeed() {
+    // Cycle through speeds: 1x -> 0.75x -> 0.5x -> 1x
+    if (playbackSpeed === 1.0) {
+        playbackSpeed = 0.75;
+    } else if (playbackSpeed === 0.75) {
+        playbackSpeed = 0.5;
+    } else {
+        playbackSpeed = 1.0;
+    }
+    
+    // Update the display
+    document.getElementById('speedText').textContent = playbackSpeed + 'x';
+    
+    // If audio is currently playing, update its speed
+    if (currentAudio && !currentAudio.paused) {
+        currentAudio.playbackRate = playbackSpeed;
+    }
+}
 
 function playFeedbackAudio(type) {
     let audioPath;
@@ -67,6 +87,7 @@ async function playAudio() {
         }
         
         currentAudio = new Audio(audioUrl);
+        currentAudio.playbackRate = playbackSpeed; // Apply current speed
         currentAudio.play();
     } catch (error) {
         showMessage('Failed to play audio.', 'error');
@@ -220,6 +241,10 @@ async function resetGame() {
         document.getElementById('guessInput').value = '';
         document.getElementById('definitionBox').classList.add('hidden');
         updateGameStats(0, 3);
+        
+        // Reset speed to 1x
+        playbackSpeed = 1.0;
+        document.getElementById('speedText').textContent = '1x';
         
         await playAudio();
     } catch (error) {
