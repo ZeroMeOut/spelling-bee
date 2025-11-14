@@ -11,14 +11,13 @@ s3 = boto3.client("s3")
 
 def get_presigned_audio_bytes(word: str):
     file_key = f"audio/{word}.wav"
-    url = s3.generate_presigned_url(
-        "get_object",
-        Params={"Bucket": bucket_name, "Key": file_key},
-        ExpiresIn=300  # 5 minutes
-    )
-    response = requests.get(url)
-    response.raise_for_status()
-    return response.content
+    try:
+        response = s3.get_object(Bucket=bucket_name, Key=file_key)
+        return response['Body'].read()
+    except Exception as e:
+        print(f"Error getting audio for '{word}': {e}")
+        print(f"Bucket: {bucket_name}, Key: {file_key}")
+        raise
 
 
 if __name__ == "__main__":
