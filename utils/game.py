@@ -1,5 +1,5 @@
 from typing import List, Dict, Any
-from utils import TTS, randomwords, definition, S3toBytes
+from utils import randomwords, definition, S3toBytes
 
 ## Idk if this is optimal but this will do for now
 class SpellingBeeGame:
