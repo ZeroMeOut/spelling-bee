@@ -4,7 +4,7 @@ from pathlib import Path
 from functools import lru_cache
 
 ## Same stuff as randomwords.py but for definitions
-DEFINITIONS_CACHE_FILE = Path(__file__).parent / "wordnet_definitions.json"
+DEFINITIONS_CACHE_FILE = Path(__file__).parent / "common_word_definitions.json"
 
 def _read_words_from_file(path: Path) -> Dict[str, str]:
     if not path.exists():

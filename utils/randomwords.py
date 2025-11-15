@@ -7,7 +7,7 @@ from functools import lru_cache
 ## At first I was using an api (see the txt file) but now I am switching to nltk's wordnet corpus
 ## See cache_file.py for caching implementation
 ## Man lru_cache is stupid fast og
-WORDS_CACHE_FILE = Path(__file__).parent / "wordnet_alpha_words.json"
+WORDS_CACHE_FILE = Path(__file__).parent / "common_words_10k.json"
 
 
 def _read_words_from_file(path: Path) -> List[str]:
