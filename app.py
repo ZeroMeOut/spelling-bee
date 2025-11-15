@@ -3,6 +3,8 @@ import uuid
 import redis
 import pickle
 import fastapi
+import asyncio
+from typing import cast
 from dotenv import load_dotenv
 from pydantic import BaseModel
 from utils.game import SpellingBeeGame
@@ -39,13 +41,13 @@ app.add_middleware(
 class GuessRequest(BaseModel):
     user_id: str
     guess: str
-
+    
 def get_game(user_id: str) -> SpellingBeeGame | None:
     try:
         data = r.get(user_id)
         if not data:
             return None
-        return pickle.loads(data)
+        return pickle.loads(cast(bytes, data))
     except Exception:
         return None
 
@@ -100,15 +102,17 @@ def cycle_definition(user_id: str):
         return JSONResponse(status_code=500, content={"error": f"Failed to cycle definition: {str(e)}"})
 
 @app.get("/audio")
-def get_audio(user_id: str):
-    game = get_game(user_id)
-    if not game:
+async def get_audio(user_id: str):
+    def load_audio():
+        game = get_game(user_id)  
+        if not game:
+            return None, None
+        return game, game.get_audio_bytes_of_current_word() 
+
+    game, audio_bytes = await asyncio.to_thread(load_audio)
+    if game is None:
         return JSONResponse(status_code=404, content={"error": "Game not found or expired"})
-    try:
-        audio_bytes = game.get_audio_bytes_of_current_word()
-        return fastapi.Response(content=audio_bytes, media_type="audio/wav")
-    except Exception as e:
-        return JSONResponse(status_code=500, content={"error": f"Failed to load audio: {str(e)}"})
+    return fastapi.Response(content=audio_bytes, media_type="audio/wav")
 
 @app.post("/guess")
 def make_guess(request: GuessRequest):
