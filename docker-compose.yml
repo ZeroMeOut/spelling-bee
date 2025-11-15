@@ -11,6 +11,7 @@ services:
       - redis
     environment:
       - REDIS_URL=redis://redis:6379/0 
+      - S3_BUCKET_NAME=wordbucketspellingbee
     command: gunicorn -w 4 -k uvicorn.workers.UvicornWorker -b 0.0.0.0:80 app:app 
 
   redis:
