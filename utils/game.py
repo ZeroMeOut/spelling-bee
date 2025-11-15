@@ -72,7 +72,7 @@ class SpellingBeeGame:
         return len(defs_list)
 
     def get_audio_bytes_of_current_word(self) -> bytes:
-        return S3toBytes.get_presigned_audio_bytes(self.target_word)
+        return S3toBytes. generate_audio_for_text(self.target_word)
 
     def one_game_session(self, word: str) -> Dict[str, Any]:
         if word.lower() == self.target_word.lower():
