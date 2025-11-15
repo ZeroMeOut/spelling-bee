@@ -17,7 +17,7 @@ def _read_words_from_file(path: Path) -> List[str]:
         data = json.load(f)
     if not isinstance(data, list):
         raise ValueError("Expected a JSON array of words in the cache file")
-    return [str(w) for w in data if len(w) > 3]
+    return [str(w) for w in data]
 
 
 @lru_cache(maxsize=1)
