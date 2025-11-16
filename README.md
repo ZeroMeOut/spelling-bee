@@ -10,4 +10,5 @@ Hello there explorer :). This over here is just for google tts. It save the byte
  - [This wonderful channel](https://www.youtube.com/@pixegami)
  - [Another wonderful channel](https://www.youtube.com/@8nehe)
  - [r/LocalLLaMA](https://www.reddit.com/r/LocalLLaMA/)
+ - [google-10000-english](https://github.com/first20hours/google-10000-english
 
